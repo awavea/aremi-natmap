@@ -44,6 +44,7 @@ var registerKnockoutBindings = require('terriajs/lib/Core/registerKnockoutBindin
 var corsProxy = require('terriajs/lib/Core/corsProxy');
 
 var AddDataPanelViewModel = require('terriajs/lib/ViewModels/AddDataPanelViewModel');
+var AddProcessPanelViewModel = require('terriajs/lib/ViewModels/AddProcessPanelViewModel');
 var AnimationViewModel = require('terriajs/lib/ViewModels/AnimationViewModel');
 var BingMapsSearchProviderViewModel = require('terriajs/lib/ViewModels/BingMapsSearchProviderViewModel');
 var BrandBarViewModel = require('terriajs/lib/ViewModels/BrandBarViewModel');
@@ -52,6 +53,7 @@ var createAustraliaBaseMapOptions = require('terriajs/lib/ViewModels/createAustr
 var createGlobalBaseMapOptions = require('terriajs/lib/ViewModels/createGlobalBaseMapOptions');
 var createToolsMenuItem = require('terriajs/lib/ViewModels/createToolsMenuItem');
 var DataCatalogTabViewModel = require('terriajs/lib/ViewModels/DataCatalogTabViewModel');
+var ProcessCatalogTabViewModel = require('terriajs/lib/ViewModels/ProcessCatalogTabViewModel');
 var DistanceLegendViewModel = require('terriajs/lib/ViewModels/DistanceLegendViewModel');
 var DragDropViewModel = require('terriajs/lib/ViewModels/DragDropViewModel');
 var ExplorerPanelViewModel = require('terriajs/lib/ViewModels/ExplorerPanelViewModel');
@@ -208,6 +210,19 @@ terria.start({
             // Add a Tools menu that only appears when "tools=1" is present in the URL.
             createToolsMenuItem(terria, ui),
             new MenuBarItemViewModel({
+                label: 'Add processes',
+                tooltip: 'Add your own web processing services to the map.',
+                svgPath: svgPlus,
+                svgPathWidth: 11,
+                svgPathHeight: 12,
+                callback: function() {
+                    AddProcessPanelViewModel.open({
+                        container: ui,
+                        terria: terria
+                    });
+                }
+            }),
+            new MenuBarItemViewModel({
                 label: 'Add data',
                 tooltip: 'Add your own data to the map.',
                 svgPath: svgPlus,
@@ -328,6 +343,9 @@ terria.start({
                         terria: terria
                     })
                 ]
+            }),
+            new ProcessCatalogTabViewModel({
+                catalog: terria.catalog
             })
         ]
     });

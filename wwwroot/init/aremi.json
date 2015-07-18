@@ -9,7 +9,40 @@
       "east": 155,
       "north": -5
   },
-  "services": [],
+	"services": [],
+  "processes": [
+		{
+			"name": "Wave Period Time Series Web Processing Service",
+			"type": "group",
+			"description": "A Test WPS that provides a wave period time series processes",
+			"processCustodian": "[CSIRO Australia](http://www.csiro.au)",
+			"url": "http://www.csiro.au/wps",
+			"items": [
+				{
+					"name": "Monthly Wave Period Time Series (at a point)", 
+					"type": "process",
+					"description": "A Test process that calculates a wave period time series at a point (long, lat)",
+					"parameters": {
+						"input": [
+						],
+						"output": [
+						]
+					}
+				},
+				{
+					"name": "Yearly Wave Period Time Series (at a point)", 
+					"type": "process",
+					"description": "A Test process that calculates a wave period time series at a point (long, lat)",
+					"parameters": {
+						"input": [
+						],
+						"output": [
+						]
+					}
+				}
+			]
+		}
+	],
   "catalog": [
     {
       "name": "Energy Infrastructure",
