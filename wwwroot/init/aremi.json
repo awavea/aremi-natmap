@@ -12,16 +12,16 @@
 	"services": [],
   "processes": [
 		{
-			"name": "Wave Period Time Series Web Processing Service",
-			"type": "group",
+			"name": "Wave Rose Processing Service",
+			"type": "processGroup",
 			"description": "A Test WPS that provides a wave period time series processes",
 			"processCustodian": "[CSIRO Australia](http://www.csiro.au)",
 			"url": "http://www.csiro.au/wps",
 			"items": [
 				{
-					"name": "Monthly Wave Period Time Series (at a point)", 
+					"name": "monthly-waverose", 
 					"type": "process",
-					"description": "A Test process that calculates a wave period time series at a point (long, lat)",
+					"description": "A Test process that calculates a monthly wave rose at a point (long, lat)",
 					"parameters": {
 						"input": [
 						],
@@ -30,9 +30,9 @@
 					}
 				},
 				{
-					"name": "Yearly Wave Period Time Series (at a point)", 
+					"name": "yearly-waverose", 
 					"type": "process",
-					"description": "A Test process that calculates a wave period time series at a point (long, lat)",
+					"description": "A Test process that calculates a yearly wave rose at a point (long, lat)",
 					"parameters": {
 						"input": [
 						],
