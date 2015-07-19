@@ -22,23 +22,83 @@
 					"name": "monthly-waverose", 
 					"type": "process",
 					"description": "A Test process that calculates a monthly wave rose at a point (long, lat)",
-					"parameters": {
-						"input": [
-						],
-						"output": [
-						]
-					}
+					"inputs": [
+						{
+							"name": "xpos",
+							"description": "X Position",
+							"datatype": "angle",
+							"uom": "urn:ogc:def:uom:EPSG::9102"
+						},
+						{ 
+							"name": "ypos",
+							"description": "Y Position",
+							"datatype": "angle",
+							"uom": "urn:ogc:def:uom:EPSG::9102"
+						},
+						{ 
+							"name": "starttime",
+							"description": "Start Time",
+							"datatype": "dateTime"
+						},
+						{ 
+							"name": "stoptime",
+							"description": "Stop Time",
+							"datatype": "dateTime"
+						},
+						{ 
+							"name": "target-type",
+							"description": "Target Type",
+							"datatype": "string"
+						}
+					],
+					"outputs": [
+						{ 
+							"name": "diagram-output",
+							"description": "URL with monthly wave rose diagram",
+							"datatype": "URL"
+						}
+					]
 				},
 				{
 					"name": "yearly-waverose", 
 					"type": "process",
 					"description": "A Test process that calculates a yearly wave rose at a point (long, lat)",
-					"parameters": {
-						"input": [
-						],
-						"output": [
-						]
-					}
+					"inputs": [
+						{
+							"name": "xpos",
+							"description": "X Position",
+							"datatype": "angle",
+							"uom": "urn:ogc:def:uom:EPSG::9102"
+						},
+						{ 
+							"name": "ypos",
+							"description": "Y Position",
+							"datatype": "angle",
+							"uom": "urn:ogc:def:uom:EPSG::9102"
+						},
+						{ 
+							"name": "starttime",
+							"description": "Start Time",
+							"datatype": "dateTime"
+						},
+						{ 
+							"name": "stoptime",
+							"description": "Stop Time",
+							"datatype": "dateTime"
+						},
+						{ 
+							"name": "target-type",
+							"description": "Target Type",
+							"datatype": "string"
+						}
+					],
+					"outputs": [
+						{ 
+							"name": "diagram-output",
+							"description": "URL with yearly wave rose diagram",
+							"datatype": "URL"
+						}
+					]
 				}
 			]
 		}
