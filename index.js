@@ -78,6 +78,7 @@ var BaseMapViewModel = require('terriajs/lib/ViewModels/BaseMapViewModel');
 var Terria = require('terriajs/lib/Models/Terria');
 var OgrCatalogItem = require('terriajs/lib/Models/OgrCatalogItem');
 var registerCatalogMembers = require('terriajs/lib/Models/registerCatalogMembers');
+var registerWorkflowMembers = require('terriajs/lib/Models/registerWorkflowMembers');
 var raiseErrorToUser = require('terriajs/lib/Models/raiseErrorToUser');
 var WebMapServiceCatalogItem = require('terriajs/lib/Models/WebMapServiceCatalogItem');
 var selectBaseMap = require('terriajs/lib/ViewModels/selectBaseMap');
@@ -101,6 +102,7 @@ registerKnockoutBindings();
 // (i.e. to reduce the size of your application if you don't actually use them all), feel free to copy a subset of
 // the code in the registerCatalogMembers function here instead.
 registerCatalogMembers();
+registerWorkflowMembers();
 
 // Construct the TerriaJS application, arrange to show errors to the user, and start it up.
 var terria = new Terria({

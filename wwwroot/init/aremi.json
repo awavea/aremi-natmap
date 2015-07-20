@@ -16,7 +16,7 @@
 			"type": "processGroup",
 			"description": "A Test WPS that provides a wave period time series processes",
 			"processCustodian": "[CSIRO Australia](http://www.csiro.au)",
-			"url": "http://www.csiro.au/wps",
+			"url": "http://blue-octa.hba.marine.csiro.au/wps",
 			"items": [
 				{
 					"name": "monthly-waverose", 
