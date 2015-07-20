@@ -211,7 +211,7 @@ terria.start({
             createToolsMenuItem(terria, ui),
             new MenuBarItemViewModel({
                 label: 'Add processes',
-                tooltip: 'Add your own web processing services to the map.',
+                tooltip: 'Add your own web processing services.',
                 svgPath: svgPlus,
                 svgPathWidth: 11,
                 svgPathHeight: 12,
