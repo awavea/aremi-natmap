@@ -27,13 +27,13 @@
 							"name": "xpos",
 							"description": "X Position",
 							"datatype": "angle",
-							"uom": "urn:ogc:def:uom:EPSG::9102"
+							"uom": "urn:ogc:def:uom:OGC:1.0:degree"
 						},
 						{ 
 							"name": "ypos",
 							"description": "Y Position",
 							"datatype": "angle",
-							"uom": "urn:ogc:def:uom:EPSG::9102"
+							"uom": "urn:ogc:def:uom:OGC:1.0:degree"
 						},
 						{ 
 							"name": "starttime",
@@ -71,13 +71,13 @@
 							"name": "xpos",
 							"description": "X Position",
 							"datatype": "angle",
-							"uom": "urn:ogc:def:uom:EPSG::9102"
+							"uom": "urn:ogc:def:uom:OGC:1.0:degree"
 						},
 						{ 
 							"name": "ypos",
 							"description": "Y Position",
 							"datatype": "angle",
-							"uom": "urn:ogc:def:uom:EPSG::9102"
+							"uom": "urn:ogc:def:uom:OGC:1.0:degree"
 						},
 						{ 
 							"name": "starttime",
