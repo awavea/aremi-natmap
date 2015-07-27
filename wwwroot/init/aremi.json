@@ -16,7 +16,7 @@
 			"type": "processGroup",
 			"description": "A Test WPS that provides a wave period time series processes",
 			"processCustodian": "[CSIRO Australia](http://www.csiro.au)",
-			"url": "http://blue-octa.hba.marine.csiro.au/wps",
+			"url": "http://oa-gis.csiro.au/ows/pywps",
 			"items": [
 				{
 					"name": "monthly-waverose", 
@@ -24,15 +24,9 @@
 					"description": "A Test process that calculates a monthly wave rose at a point (long, lat)",
 					"inputs": [
 						{
-							"name": "xpos",
-							"description": "X Position",
-							"datatype": "angle",
-							"uom": "urn:ogc:def:uom:OGC:1.0:degree"
-						},
-						{ 
-							"name": "ypos",
-							"description": "Y Position",
-							"datatype": "angle",
+							"name": "LongLatPosition",
+							"description": "Position Longitude/Latitude",
+							"datatype": "angleList",
 							"uom": "urn:ogc:def:uom:OGC:1.0:degree"
 						},
 						{ 
@@ -51,6 +45,7 @@
 							"name": "target-type",
 							"description": "Target Type",
 							"datatype": "string",
+							"allowedValues": [ "Target1", "Target2" ],
 							"minOccurs": 0
 						}
 					],
@@ -58,7 +53,7 @@
 						{ 
 							"name": "diagram-output",
 							"description": "URL with monthly wave rose diagram",
-							"datatype": "URL"
+							"datatype": "anyURI"
 						}
 					]
 				},
@@ -68,15 +63,9 @@
 					"description": "A Test process that calculates a yearly wave rose at a point (long, lat)",
 					"inputs": [
 						{
-							"name": "xpos",
-							"description": "X Position",
-							"datatype": "angle",
-							"uom": "urn:ogc:def:uom:OGC:1.0:degree"
-						},
-						{ 
-							"name": "ypos",
-							"description": "Y Position",
-							"datatype": "angle",
+							"name": "LongLatPosition",
+							"description": "Position Longitude/Latitude",
+							"datatype": "angleList",
 							"uom": "urn:ogc:def:uom:OGC:1.0:degree"
 						},
 						{ 
@@ -102,7 +91,7 @@
 						{ 
 							"name": "diagram-output",
 							"description": "URL with yearly wave rose diagram",
-							"datatype": "URL"
+							"datatype": "anyURI"
 						}
 					]
 				}
