@@ -331,7 +331,7 @@ terria.start({
         isOpen: !terria.userProperties.hideExplorerPanel,
         tabs: [
             new DataCatalogTabViewModel({
-                catalog: terria.catalog
+                terria: terria
             }),
             nowViewingTab,
             new SearchTabViewModel({
@@ -349,7 +349,7 @@ terria.start({
                 ]
             }),
             new ProcessCatalogTabViewModel({
-                catalog: terria.catalog
+                terria: terria
             })
         ]
     });
