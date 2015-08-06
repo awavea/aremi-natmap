@@ -33,20 +33,20 @@
 							"name": "starttime",
 							"description": "Start Time",
 							"datatype": "dateTime",
-							"minOccurs": 0
+							"minOccurs": "0"
 						},
 						{ 
 							"name": "stoptime",
 							"description": "Stop Time",
 							"datatype": "dateTime",
-							"minOccurs": 0
+							"minOccurs": "0"
 						},
 						{ 
 							"name": "target-type",
 							"description": "Target Type",
 							"datatype": "string",
 							"allowedValues": [ "Target1", "Target2" ],
-							"minOccurs": 0
+							"minOccurs": "0"
 						}
 					],
 					"outputs": [
@@ -72,19 +72,19 @@
 							"name": "starttime",
 							"description": "Start Time",
 							"datatype": "dateTime",
-							"minOccurs": 0
+							"minOccurs": "0"
 						},
 						{ 
 							"name": "stoptime",
 							"description": "Stop Time",
 							"datatype": "dateTime",
-							"minOccurs": 0
+							"minOccurs": "0"
 						},
 						{ 
 							"name": "target-type",
 							"description": "Target Type",
 							"datatype": "string",
-							"minOccurs": 0
+							"minOccurs": "0"
 						}
 					],
 					"outputs": [
