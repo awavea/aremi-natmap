@@ -179,7 +179,7 @@ terria.start({
     }));
 
     var allBaseMaps = aremiBaseMaps.concat(australiaBaseMaps).concat(globalBaseMaps);
-    selectBaseMap(terria, allBaseMaps, 'OpenStreeMaps Light (BETA)');
+    selectBaseMap(terria, allBaseMaps, 'Australian Wave Atlas');
 
     // Create the Settings / Map panel.
     var settingsPanel = SettingsPanelViewModel.create({
