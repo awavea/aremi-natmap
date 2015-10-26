@@ -40,9 +40,11 @@ checkBrowserCompatibility('ui');
 var knockout = require('terriajs-cesium/Source/ThirdParty/knockout');
 var defined = require('terriajs-cesium/Source/Core/defined');
 
+var isCommonMobilePlatform = require('terriajs/lib/Core/isCommonMobilePlatform');
 var TerriaViewer = require('terriajs/lib/ViewModels/TerriaViewer');
 var registerKnockoutBindings = require('terriajs/lib/Core/registerKnockoutBindings');
 var corsProxy = require('terriajs/lib/Core/corsProxy');
+var GoogleAnalytics = require('terriajs/lib/Core/GoogleAnalytics');
 
 var AddDataPanelViewModel = require('terriajs/lib/ViewModels/AddDataPanelViewModel');
 var AddProcessPanelViewModel = require('terriajs/lib/ViewModels/AddProcessPanelViewModel');
@@ -60,6 +62,7 @@ var DragDropViewModel = require('terriajs/lib/ViewModels/DragDropViewModel');
 var ExplorerPanelViewModel = require('terriajs/lib/ViewModels/ExplorerPanelViewModel');
 var FeatureInfoPanelViewModel = require('terriajs/lib/ViewModels/FeatureInfoPanelViewModel');
 var GazetteerSearchProviderViewModel = require('terriajs/lib/ViewModels/GazetteerSearchProviderViewModel');
+var GoogleUrlShortener = require('terriajs/lib/Models/GoogleUrlShortener');
 var LocationBarViewModel = require('terriajs/lib/ViewModels/LocationBarViewModel');
 var MenuBarItemViewModel = require('terriajs/lib/ViewModels/MenuBarItemViewModel');
 var MenuBarViewModel = require('terriajs/lib/ViewModels/MenuBarViewModel');
@@ -73,6 +76,7 @@ var SearchTabViewModel = require('terriajs/lib/ViewModels/SearchTabViewModel');
 var SettingsPanelViewModel = require('terriajs/lib/ViewModels/SettingsPanelViewModel');
 var SharePopupViewModel = require('terriajs/lib/ViewModels/SharePopupViewModel');
 var updateApplicationOnHashChange = require('terriajs/lib/ViewModels/updateApplicationOnHashChange');
+var ViewerMode = require('terriajs/lib/Models/ViewerMode');
 
 var BaseMapViewModel = require('terriajs/lib/ViewModels/BaseMapViewModel');
 var Terria = require('terriajs/lib/Models/Terria');
@@ -110,7 +114,8 @@ var terria = new Terria({
     supportEmail: 'aremi@nicta.com.au',
     baseUrl: configuration.terriaBaseUrl,
     cesiumBaseUrl: configuration.cesiumBaseUrl,
-    regionMappingDefinitionsUrl: configuration.regionMappingDefinitionsUrl
+    regionMappingDefinitionsUrl: configuration.regionMappingDefinitionsUrl,
+    analytics: new GoogleAnalytics()
 });
 
 // We'll put the entire user interface into a DOM element called 'ui'.
@@ -128,7 +133,11 @@ terria.start({
     // If you don't want the user to be able to control catalog loading via the URL, remove the applicationUrl property below
     // as well as the call to "updateApplicationOnHashChange" further down.
     applicationUrl: window.location,
-    configUrl: 'config.json'
+    configUrl: 'config.json',
+    defaultTo2D: isCommonMobilePlatform(),
+    urlShortener: new GoogleUrlShortener({
+        terria: terria
+    })
 }).otherwise(function(e) {
     raiseErrorToUser(terria, e);
 }).always(function() {
@@ -144,10 +153,13 @@ terria.start({
             link: 'http://www.nicta.com.au'
         }
     });
+    terria.viewerMode = ViewerMode.CesiumEllipsoid;
 
     // Create the various base map options.
     var australiaBaseMaps = createAustraliaBaseMapOptions(terria);
     var globalBaseMaps = createGlobalBaseMapOptions(terria, configuration.bingMapsKey);
+
+    /* turn off the custom AREMI maps for now
     var aremiBaseMaps = [];
 
     var osmSimpleLight = new WebMapServiceCatalogItem(terria);
@@ -177,6 +189,7 @@ terria.start({
         image: 'images/osmDark.png',
         catalogItem: osmSimpleDark,
     }));
+    */
 
     var allBaseMaps = aremiBaseMaps.concat(australiaBaseMaps).concat(globalBaseMaps);
     selectBaseMap(terria, allBaseMaps, 'Australian Wave Atlas');
@@ -194,8 +207,8 @@ terria.start({
         container: ui,
         elements: [
             '<div class="ausglobe-title-aremi">\
-                <img class="left"  src="images/ARENA-logo2.png"/>\
-                <img class="right" src="images/nicta.png"/>\
+                <img class="left"  src="images/ARENA-logo2.png" alt="Australian Renewable Energy Agency" />\
+                <img class="right" src="images/nicta.png" alt="NICTA" />\
                 <br/>\
                 <strong>Australian Renewable Energy</strong>\
                 <br/>\
@@ -310,6 +323,7 @@ terria.start({
     AnimationViewModel.create({
         container: document.getElementById('cesiumContainer'),
         terria: terria,
+        autoPlay: false,
         mapElementsToDisplace: [
             'cesium-widget-credits',
             'leaflet-control-attribution',
@@ -323,12 +337,14 @@ terria.start({
         name: 'Legends'
     });
 
+    var isSmallScreen = document.body.clientWidth <= 700 || document.body.clientHeight <= 420;
+
     // Create the explorer panel.
     ExplorerPanelViewModel.create({
         container: ui,
         terria: terria,
         mapElementToDisplace: 'cesiumContainer',
-        isOpen: !terria.userProperties.hideExplorerPanel,
+        isOpen: !isSmallScreen && !terria.userProperties.hideExplorerPanel,
         tabs: [
             new DataCatalogTabViewModel({
                 terria: terria
@@ -393,6 +409,7 @@ terria.start({
       if(defined(disclaimer.enabled) && disclaimer.enabled) {
           var options = {
               title: defined(disclaimer.title) ? disclaimer.title : 'Disclaimer',
+              confirmText: "I Agree",
               width: 600,
               height: 550,
               message: require('fs').readFileSync(__dirname + '/lib/Views/GlobalDisclaimer.html', 'utf8'),

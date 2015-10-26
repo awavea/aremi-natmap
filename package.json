@@ -19,14 +19,15 @@
     "proj4js-defs": "^0.0.1",
     "request": "^2.55.0",
     "supervisor": "^0.6.0",
-    "terriajs": "1.0.35",
-    "terriajs-cesium": "1.10.7",
+    "terriajs": "git://github.com/TerriaJS/terriajs#cc611bdce282ea254bb6e81d2deca409d2a6c6a3",
+    "terriajs-cesium": "1.11.1",
     "yargs": "^3.8.0"
   },
   "devDependencies": {
     "brfs": "^1.4.0",
     "browserify": "^9.0.8",
     "deamdify": "^0.1.1",
+    "ejs": "^2.3.3",
     "exorcist": "^0.3.0",
     "glob": "^5.0.5",
     "glob-all": "^3.0.1",
