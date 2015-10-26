@@ -159,8 +159,8 @@ terria.start({
     var australiaBaseMaps = createAustraliaBaseMapOptions(terria);
     var globalBaseMaps = createGlobalBaseMapOptions(terria, configuration.bingMapsKey);
 
-    /* turn off the custom AREMI maps for now
     var aremiBaseMaps = [];
+    /* turn off the custom AREMI maps for now
 
     var osmSimpleLight = new WebMapServiceCatalogItem(terria);
     osmSimpleLight.name = 'OpenStreeMaps Light (BETA)';
