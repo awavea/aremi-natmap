@@ -39,6 +39,7 @@ checkBrowserCompatibility('ui');
 
 var knockout = require('terriajs-cesium/Source/ThirdParty/knockout');
 var defined = require('terriajs-cesium/Source/Core/defined');
+var fs = require('fs');
 
 var isCommonMobilePlatform = require('terriajs/lib/Core/isCommonMobilePlatform');
 var TerriaViewer = require('terriajs/lib/ViewModels/TerriaViewer');
@@ -77,6 +78,7 @@ var SettingsPanelViewModel = require('terriajs/lib/ViewModels/SettingsPanelViewM
 var SharePopupViewModel = require('terriajs/lib/ViewModels/SharePopupViewModel');
 var updateApplicationOnHashChange = require('terriajs/lib/ViewModels/updateApplicationOnHashChange');
 var ViewerMode = require('terriajs/lib/Models/ViewerMode');
+var updateApplicationOnMessageFromParentWindow = require('terriajs/lib/ViewModels/updateApplicationOnMessageFromParentWindow');
 
 var BaseMapViewModel = require('terriajs/lib/ViewModels/BaseMapViewModel');
 var Terria = require('terriajs/lib/Models/Terria');
@@ -145,6 +147,7 @@ terria.start({
 
     // Automatically update Terria (load new catalogs, etc.) when the hash part of the URL changes.
     updateApplicationOnHashChange(terria, window);
+    updateApplicationOnMessageFromParentWindow(terria, window);
 
     // Create the map/globe.
     TerriaViewer.create(terria, {
@@ -207,14 +210,14 @@ terria.start({
         container: ui,
         elements: [
             '<div class="ausglobe-title-aremi">\
-                <img class="left"  src="images/ARENA-logo2.png" alt="Australian Renewable Energy Agency" />\
-                <img class="right" src="images/nicta.png" alt="NICTA" />\
+                <a href="http://arena.gov.au/" target="_blank"><img class="left"  src="images/ARENA-logo2.png" alt="Australian Renewable Energy Agency" /></a>\
+                <a href="https://www.nicta.com.au/" target="_blank"><img class="right" src="images/DATA61_CSIRO.png" alt="NICTA" width="55px" height="33px"/></a>\
                 <br/>\
                 <strong>Australian Renewable Energy</strong>\
                 <br/>\
                 <small>Mapping Infrastructure</small>\
                 <br/>\
-                <span>Version: ' + version + '</span>\
+                <span><a target="_blank" href="https://github.com/NICTA/aremi-natmap/blob/master/Changelog.md#version-' + version + '">Version: ' + version + '</a></span>\
             </div>'
         ]
     });
@@ -407,12 +410,17 @@ terria.start({
     if(defined(terria.configParameters.globalDisclaimer)) {
       var disclaimer = terria.configParameters.globalDisclaimer;
       if(defined(disclaimer.enabled) && disclaimer.enabled) {
+          var message = '';
+          if (location.hostname.indexOf('nationalmap.gov.au') === -1) {
+            message += fs.readFileSync(__dirname + '/lib/Views/DevelopmentDisclaimer.html', 'utf8');
+          }
+          message += fs.readFileSync(__dirname + '/lib/Views/GlobalDisclaimer.html', 'utf8');
           var options = {
               title: defined(disclaimer.title) ? disclaimer.title : 'Disclaimer',
               confirmText: "I Agree",
               width: 600,
               height: 550,
-              message: require('fs').readFileSync(__dirname + '/lib/Views/GlobalDisclaimer.html', 'utf8'),
+              message: message,
               horizontalPadding : 100
           };
 

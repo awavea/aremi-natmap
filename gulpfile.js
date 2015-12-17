@@ -27,6 +27,8 @@ var appJSName = 'nationalmap.js';
 var appCssName = 'nationalmap.css';
 var specJSName = 'nationalmap-tests.js';
 var appEntryJSName = './index.js';
+var terriaJSSource = 'node_modules/terriajs/wwwroot';
+var terriaJSDest = 'wwwroot/build/TerriaJS';
 var testGlob = './test/**/*.js';
 
 // Create the build directory, because browserify flips out if the directory that might
@@ -68,6 +70,7 @@ gulp.task('release', ['build-css', 'merge-datasources', 'merge-datasources-aremi
 
 gulp.task('watch-app', ['prepare'], function() {
     return watch(appJSName, appEntryJSName, false);
+    // TODO: make this automatically trigger when ./lib/Views/*.html get updated
 });
 
 gulp.task('watch-specs', ['prepare'], function() {
@@ -75,7 +78,7 @@ gulp.task('watch-specs', ['prepare'], function() {
 });
 
 gulp.task('watch-css', ['build-css'], function() {
-    return gulp.watch(['./index.less', './lib/Styles/*.less', './node_modules/terriajs/lib/Styles/*.less'], ['build-css']);
+    return gulp.watch(['./index.less', './node_modules/terriajs/lib/Styles/*.less', './lib/Styles/*.less'], ['build-css']);
 });
 
 gulp.task('watch-datasource-groups', ['merge-groups'], function() {
@@ -92,8 +95,11 @@ gulp.task('watch-datasource-aremi', function() {
 
 gulp.task('watch-datasources', ['watch-datasource-groups','watch-datasource-catalog','watch-datasource-aremi']);
 
+gulp.task('watch-terriajs', ['prepare-terriajs'], function() {
+    return gulp.watch(terriaJSSource + '/**', [ 'prepare-terriajs' ]);
+});
 
-gulp.task('watch', ['watch-app', 'watch-specs', 'watch-css', 'watch-datasources']);
+gulp.task('watch', ['watch-app', 'watch-specs', 'watch-css', 'watch-datasources', 'watch-terriajs']);
 
 gulp.task('lint', function(){
     return gulp.src(['lib/**/*.js', 'test/**/*.js'])
@@ -112,10 +118,9 @@ gulp.task('docs', function(){
 gulp.task('prepare', ['prepare-terriajs']);
 
 gulp.task('prepare-terriajs', function() {
-    return gulp.src([
-            'node_modules/terriajs/wwwroot/**'
-        ], { base: 'node_modules/terriajs/wwwroot' })
-    .pipe(gulp.dest('wwwroot/build/TerriaJS'));
+    return gulp
+        .src([ terriaJSSource + '/**' ], { base: terriaJSSource })
+        .pipe(gulp.dest(terriaJSDest));
 });
 
 gulp.task('merge-groups', function() {
@@ -157,7 +162,7 @@ gulp.task('merge-datasources-aremi', function() {
     // use EJS to process
     var result = ejs.render(template, null, {filename: fn});
     // remove all newlines - makes it possible to nicely format data descriptions etc
-    var noNewlines = result.replace(/\n/g, '');
+    var noNewlines = result.replace(/(?:\r\n|\r|\n)/g, '');
     // eval JSON string into object and minify
     var buf = new Buffer(JSON.stringify(eval('('+noNewlines+')'), null, 0));
     fs.writeFileSync('wwwroot/init/aremi.json', buf);
@@ -223,7 +228,7 @@ function watch(name, files, minify) {
         debug: true,
         cache: {},
         packageCache: {}
-    }));
+    }), { poll: 1000 } );
 
     function rebundle(ids) {
         // Don't rebundle if only the version changed.

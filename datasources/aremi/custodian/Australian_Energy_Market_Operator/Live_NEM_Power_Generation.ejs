@@ -1,14 +1,13 @@
 {
-  "name": "Live NEM Power Generation - AEMO",
+  "name": "Current Power Generation - NEM",
   "type": "group",
   "preserveOrder": true,
   "items": [
     {
-      "name": "All",
-      "type": "csv",
+      "name": "All generation types",
       "url": "http://services.aremi.nicta.com.au/aemo/v3/csv/all",
-      "cacheDuration": "5m",
-      <% include live-tableStyle %>
+      <% include common-properties %>,
+      <% include live-tableStyle %>,
       "info": [
         {
           "name": "Description",
@@ -19,10 +18,9 @@
     },
     {
       "name": "Renewable",
-      "type": "csv",
       "url": "http://services.aremi.nicta.com.au/aemo/v3/csv/renewables",
-      "cacheDuration": "5m",
-      <% include live-tableStyle %>
+      <% include common-properties %>,
+      <% include live-tableStyle %>,
       "info": [
         {
           "name": "Description",
@@ -33,10 +31,9 @@
     },
     {
       "name": "Fossil",
-      "type": "csv",
       "url": "http://services.aremi.nicta.com.au/aemo/v3/csv/fossil",
-      "cacheDuration": "5m",
-      <% include live-tableStyle %>
+      <% include common-properties %>,
+      <% include live-tableStyle %>,
       "info": [
         {
           "name": "Description",
@@ -47,10 +44,9 @@
     },
     {
       "name": "Bioenergy",
-      "type": "csv",
       "url": "http://services.aremi.nicta.com.au/aemo/v3/csv/bio",
-      "cacheDuration": "5m",
-      <% include live-tableStyle %>
+      <% include common-properties %>,
+      <% include live-tableStyle %>,
       "info": [
         {
           "name": "Description",
@@ -61,10 +57,9 @@
     },
     {
       "name": "Hydro",
-      "type": "csv",
       "url": "http://services.aremi.nicta.com.au/aemo/v3/csv/hydro",
-      "cacheDuration": "5m",
-      <% include live-tableStyle %>
+      <% include common-properties %>,
+      <% include live-tableStyle %>,
       "info": [
         {
           "name": "Description",
@@ -75,10 +70,9 @@
     },
     {
       "name": "Solar",
-      "type": "csv",
       "url": "http://services.aremi.nicta.com.au/aemo/v3/csv/solar",
-      "cacheDuration": "5m",
-      <% include live-tableStyle %>
+      <% include common-properties %>,
+      <% include live-tableStyle %>,
       "info": [
         {
           "name": "Description",
@@ -89,10 +83,9 @@
     },
     {
       "name": "Wind",
-      "type": "csv",
       "url": "http://services.aremi.nicta.com.au/aemo/v3/csv/wind",
-      "cacheDuration": "5m",
-      <% include live-tableStyle %>
+      <% include common-properties %>,
+      <% include live-tableStyle %>,
       "info": [
         {
           "name": "Description",

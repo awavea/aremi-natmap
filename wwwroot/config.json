@@ -1,5 +1,7 @@
 {
     "proxyDomains" : [
+        "nci.org.au",
+        "environment.gov.au",
         "services.thelist.tas.gov.au",
         "aemo.com.au",
         "nci.org.au",
@@ -8,15 +10,20 @@
         "aurin.org.au",
         "nicta.com.au",
         "ga.gov.au",
-        "csiro.au"
+        "csiro.au",
+        "geoserver.aurin.org.au",
+        "mapsengine.google.com",
+        "geoserver-123.aodn.org.au",
+        "geoserver.imos.org.au",
+        "nci.org.au"
     ],
     "initializationUrls" : [
         "aremi",
-        "proxy/_60s/http://static.aremi.nicta.com.au/init.json"
+        "proxy/_60s/http://static.aremi.nicta.com.au/init2.json"
     ],
     "parameters": {
         "bingMapsKey": null,
-        "googleUrlShortenerKey": null,
+        "googleUrlShortenerKey": "AIzaSyDtUfMZKSUTLhHUGt8Jk6cTGNHAADx0xy8",
         "googleAnalyticsKey": "UA-61302891-1",
         "googleAnalyticsOptions": null,
         "disclaimer": {
