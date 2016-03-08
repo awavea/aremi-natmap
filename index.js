@@ -443,15 +443,18 @@ terria.start({
     }
 
     // Add the survey link
-    var surveyLink = 'https://docs.google.com/forms/d/1ZQkNgSWA2mmxlsEICxlm7cOhJ2xVxRGScsvJ83i0F3M/viewform';
+    var surveyLink = 'https://docs.google.com/forms/d/1A4aiZYeuqYDEqhc1ils1tPYD4bU6px6SdW2HopA81UI/viewform';
     var surveyContainer = document.createElement("div");
-    document.querySelector(".explorer-panel-body-pane").appendChild(surveyContainer);
     surveyContainer.innerHTML =
       '<div class="feedback-request">\
         <p><a href="' + surveyLink + '">Give Feedback</a></p>\
         <p>This site is still in development, so please <a href="' + surveyLink + '">tell us what you think</a>. Our survey will take 5 mins.</p>\
       </div>';
 
+		var panels = document.querySelectorAll(".explorer-panel-body-pane");
+		for( var i=0; i < panels.length; i++ ) {
+			panels[i].appendChild(surveyContainer.cloneNode(true));
+		}
 
     document.getElementById('loadingIndicator').style.display = 'none';
 });
