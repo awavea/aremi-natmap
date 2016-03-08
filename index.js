@@ -64,6 +64,7 @@ var ExplorerPanelViewModel = require('terriajs/lib/ViewModels/ExplorerPanelViewM
 var FeatureInfoPanelViewModel = require('terriajs/lib/ViewModels/FeatureInfoPanelViewModel');
 var GazetteerSearchProviderViewModel = require('terriajs/lib/ViewModels/GazetteerSearchProviderViewModel');
 var GoogleUrlShortener = require('terriajs/lib/Models/GoogleUrlShortener');
+var MapInteractionModeIndicatorViewModel = require('terriajs/lib/ViewModels/MapInteractionModeIndicatorViewModel');
 var LocationBarViewModel = require('terriajs/lib/ViewModels/LocationBarViewModel');
 var MenuBarItemViewModel = require('terriajs/lib/ViewModels/MenuBarItemViewModel');
 var MenuBarViewModel = require('terriajs/lib/ViewModels/MenuBarViewModel');
@@ -404,6 +405,12 @@ terria.start({
             settingsPanel,
             featureInfoPanel
         ]
+    });
+
+    // Create the map indicator widget.
+    MapInteractionModeIndicatorViewModel.create({
+        container: 'cesiumContainer',
+        terria: terria
     });
 
     // Add the disclaimer, if specified
