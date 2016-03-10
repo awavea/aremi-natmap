@@ -48,10 +48,10 @@
           <li><p>Click a Process <b>Group Name</b> (for example, <strong>Web Processing Services from CSIRO O&A</strong>) to see the Web Process servers in that group. The list of process servers displayed is extracted from the metadata catalogue so there will be a slight delay whilst they are retrieved. When the process servers are displayed open <strong>Australian Wave Atlas PyWPS Server</strong></p>
           </li>
 
-          <li><p>Click a process <b>Name</b> (for example <strong>Monthly Power Distribution Matrix</strong>) to specify the input parameters for this process and begin a run.</p>
+          <li><p>Click a process <b>Definition Name</b> (for example <strong>Monthly Power Distribution Matrix</strong>) to specify the input parameters for this process and begin a run.</p>
 					</li>
 
-          <li><p>Click on the <img src="img/InfoButton.png" > button of any Process to show the available metadata
+          <li><p>Click on the <img src="img/InfoButton.png" > button of any Process Definition to show the available metadata
           for that Process. The metadata includes a description of the process and the input parameters that can be specified.</p>
           </li>
 
@@ -75,7 +75,7 @@
           <li><p>Click on the <b>Submit</b> tab when the mandatory inputs have been specified.</p>
           </li>
 
-          <li><p>When the <b>Submit</b> button is clicked, the process will be submitted to the web process server. The process result will appear as a sub-item of the process.
+          <li><p>When the <b>OK</b> button is clicked, the process will be submitted to the web process server. The process result will appear as a sub-item of the process definition.
           </li>
 
 				</ul>
@@ -84,10 +84,19 @@
 
 				<ul>
 
-          <li><p>Click on the <b>Submit</b> tab when the mandatory inputs have been specified.</p>
+          <li><p>Whilst the process is executing a spinner <i class="fa fa-spinner fa-spin" style="color: orange;"></i> will be shown. Clicking on the spinner will allow cancellation of the process.</p>
           </li>
 
-          <li><p>When the <b>Submit</b> button is clicked, the process will be submitted to the web process server. The process result will appear as a sub-item of the process.
+				</ul>
+
+				<img src="img/ProcessFinished.png">
+
+				<ul>
+          <li><p>When the process finishes, the result will be show with the process name and the time of execution. In addition two icons will be shown to the right. The icons show the status of the process run and when clicked provide some operations:</p>
+					<ul>
+						<li><i class="fa fa-times" style="color: red"></i> - clicking on this icon will delete the process result from the process tab.</li>
+						<li><i class="fa fa-check-circle" style="color:green"></i> - indicates that the process has executed successfully. Clicking on this icon or the process result name will bring up a window with the results of the process. If <i class="fa fa-exclamation-circle" style="color: red;"></i> appears instead then the process execution failed and the result of the process will be the error message returned by the process server.</li>
+					</ul>
           </li>
 
 				</ul>
