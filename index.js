@@ -113,8 +113,8 @@ registerWorkflowMembers();
 
 // Construct the TerriaJS application, arrange to show errors to the user, and start it up.
 var terria = new Terria({
-    appName: 'AREMI',
-    supportEmail: 'aremi@nicta.com.au',
+    appName: 'AWAVEA',
+    supportEmail: 'awaveainfo@csiro.au',
     baseUrl: configuration.terriaBaseUrl,
     cesiumBaseUrl: configuration.cesiumBaseUrl,
     regionMappingDefinitionsUrl: configuration.regionMappingDefinitionsUrl,
