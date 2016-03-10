@@ -45,15 +45,16 @@
 
         <ul>
 
-          <li><p>Click a Process <b>Group Name</b> (for example, <strong>Web Processing Services from CSIRO O&A</strong>) to see the Web Process servers in that group. The list of process servers displayed is extracted from the metadata catalogue so there will be a slight delay whilst they are retrieved. When the process servers are displayed open <strong>Australian Wave Atlas PyWPS Server</strong></p>
+          <li><p>Click a Process <b>Group Name</b> (for example, <strong>Web Processing Services from CSIRO O&A</strong>) to see the Web Process servers in that group. The list of process servers displayed is extracted from the metadata catalogue so there will be a slight delay whilst they are retrieved. When the process servers are displayed open <strong>Australian Wave Atlas PyWPS Server</strong>. A list of processes will then be shown.</p>
           </li>
 
-          <li><p>Click a process <b>Definition Name</b> (for example <strong>Monthly Power Distribution Matrix</strong>) to specify the input parameters for this process and begin a run.</p>
-					</li>
-
-          <li><p>Click on the <img src="img/InfoButton.png" > button of any Process Definition to show the available metadata
+          <li><p>Click on the <img src="img/InfoButton.png" > button of any Process name to show the available metadata
           for that Process. The metadata includes a description of the process and the input parameters that can be specified.</p>
           </li>
+
+          <li><p>Click on the process name (for example <strong>Monthly Power Distribution Matrix</strong>) to specify the input parameters for this process and create a process run.</p>
+					</li>
+
 
 				</ul>
 
@@ -64,18 +65,19 @@
           <li><p>Fill out the inputs by clicking on the tabs and entering the values. Mandatory/Required input parameters have an asterisk (*) next to the name of the parameter.</p>
           </li>
 
-          <li><p>Parameters that require a spatial input (eg. LonLatPosition) have a cross-hair <i class="fa fa-2x fa-crosshairs"></i> button that can be used to obtain a position by clicking on the map.</p>
+          <li><p>Parameters that require a spatial input (eg. LonLatPosition) have a crosshairs <i class="fa fa-2x fa-crosshairs"></i> button that can be used to obtain a position by clicking on the map.</p>
           </li>
+
+          <li><p>Click on the <b>Submit</b> tab when the mandatory inputs have been specified. The name of the process result can be specified here or the default name can be accepted.</p>
+          </li>
+
 				</ul>
 
         <img src="img/ProcessSubmitTab.png">
 
 				<ul>
 
-          <li><p>Click on the <b>Submit</b> tab when the mandatory inputs have been specified.</p>
-          </li>
-
-          <li><p>When the <b>OK</b> button is clicked, the process will be submitted to the web process server. The process result will appear as a sub-item of the process definition.
+          <li><p>When the <b>OK</b> button is clicked, the process will be submitted to the web process server. The process result will appear as a sub-item of the process with the specified on submission.
           </li>
 
 				</ul>
@@ -92,13 +94,29 @@
 				<img src="img/ProcessFinished.png">
 
 				<ul>
-          <li><p>When the process finishes, the result will be show with the process name and the time of execution. In addition two icons will be shown to the right. The icons show the status of the process run and when clicked provide some operations:</p>
+          <li><p>When the process finishes, the two icons will be shown to the right of the process. The icons show the status of the process run and when clicked provide some operations:</p>
 					<ul>
 						<li><i class="fa fa-times" style="color: red"></i> - clicking on this icon will delete the process result from the process tab.</li>
 						<li><i class="fa fa-check-circle" style="color:green"></i> - indicates that the process has executed successfully. Clicking on this icon or the process result name will bring up a window with the results of the process. If <i class="fa fa-exclamation-circle" style="color: red;"></i> appears instead then the process execution failed and the result of the process will be the error message returned by the process server.</li>
 					</ul>
           </li>
 
+				</ul>
+
+				<img src="img/ProcessResults.png">
+
+				<ul>
+				  <li><p>Clicking on the process result name or the <i class="fa fa-check-circle" style="color:green"></i> will bring up the results of the process in a modal window. Any result (image or link) can be downloaded by clicking on it.</p>
+					</li>
+
+				  <li><p>Clicking on the <i class="fa fa-external-link"></i> icon at the top of the results window will bring up the results of the process in a separate browser window. This is handy if you want to keep the results around for visual comparison.</p>
+					</li>
+				</ul>
+
+				<img src="img/ProcessPlotResult.png">
+
+				<ul>
+					<li>Checking the checkbox next to the left of the process result name will plot any geometry specified as a process input parameter on the map.</li>
 				</ul>
 
       </section>
