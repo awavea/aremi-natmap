@@ -453,7 +453,9 @@ terria.start({
 
 		var panels = document.querySelectorAll(".explorer-panel-body-pane");
 		for( var i=0; i < panels.length; i++ ) {
-			panels[i].appendChild(surveyContainer.cloneNode(true));
+			if (i === 0 || i === 3) { // only the first and last tabs should have feedback/survey link
+				panels[i].appendChild(surveyContainer.cloneNode(true));
+			}
 		}
 
     document.getElementById('loadingIndicator').style.display = 'none';
